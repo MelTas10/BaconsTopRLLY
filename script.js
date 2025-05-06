@@ -1,6 +1,6 @@
-// Плавное появление блоков при скролле
+// Анимация появления панелей при скролле
 document.addEventListener('DOMContentLoaded', () => {
-    const infoBoxes = document.querySelectorAll('.info-box, .social-buttons');
+    const panels = document.querySelectorAll('.panel');
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -8,9 +8,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 entry.target.classList.add('show');
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.2 });
 
-    infoBoxes.forEach(box => {
-        observer.observe(box);
+    panels.forEach(panel => {
+        observer.observe(panel);
+    });
+});
+
+// Дополнительные эффекты (по желанию)
+document.querySelectorAll('.neon-panel').forEach(panel => {
+    panel.addEventListener('mouseenter', () => {
+        panel.style.transform = 'scale(1.02)';
+    });
+    panel.addEventListener('mouseleave', () => {
+        panel.style.transform = 'scale(1)';
     });
 });
